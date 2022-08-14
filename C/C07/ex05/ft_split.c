@@ -6,12 +6,45 @@
 /*   By: rsantos <rsantos@student.42lisboa.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 07:32:34 by rsantos           #+#    #+#             */
-/*   Updated: 2022/08/12 07:33:22 by rsantos          ###   ########.fr       */
+/*   Updated: 2022/08/14 18:04:22 by rsantos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+size_t ft_strlen(const char *str)
+{
+    size_t i;
+
+    i = 0;
+    while(str[i])
+        i++;
+    return (i);
+}
+
+char	*ft_substr(char const *s, size_t start, size_t len)
+{
+	size_t i;
+	char *str;
+	
+	i = 0;
+	if (len < ft_strlen((char *)s))
+		str = malloc((len + 1) * sizeof(char));
+	if(len > ft_strlen((char *)s))
+		str = malloc((ft_strlen((char *)s) + 1) * sizeof(char));
+	if (!str)
+		return(NULL);
+	
+	while (s[start] && i < len)
+	{
+		str[i] = s[start];
+		i++;
+		start++;
+	}
+	str[i] = '\0';
+	return(str);
+}
+
 static size_t	word_counter(const char *s, char c)
 {
 	size_t i;
